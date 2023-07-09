@@ -1,3 +1,5 @@
+/* Global styles */
+
 * {
     background-color: #0A172D;
     padding: 0;
@@ -5,4 +7,51 @@
     box-sizing: border-box;
     color: #F2F7FF;
     font-family: Montserrat, sans-serif;
+}
+
+body {
+    text-align: center;
+    height: 100vh;
+}
+
+/* Game area styles */
+
+#game-area {
+    display: flex;
+    width: 860px;
+    height: 640px;
+    margin: auto;
+    flex-wrap: wrap;
+    
+}
+
+.cards {
+    
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: scale(1);
+    
+    
+}
+
+.cards:active {
+    transform: scale(0.96);
+    transition: transform .25s;
+}
+
+
+.card-back, 
+.card-front {
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+    padding: 0;
+    position: absolute; 
+    background-color: #0A172D;
 }
