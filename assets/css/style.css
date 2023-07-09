@@ -55,3 +55,39 @@ body {
     position: absolute; 
     background-color: #0A172D;
 }
+
+/* Info area styles */
+
+#info-area {
+    width: 860px;
+    text-align: center;
+    margin: auto;
+    display: inline-block;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.4em;
+    
+}
+
+button {
+    background-image: linear-gradient(#0BBCCF, #11E3FA, #0BBCCF);
+    border: 12px, solid, #F2F7FF;
+    color: #0A172D;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    font-weight: 800;
+    border-radius: 16px;
+    width: 200px;
+}
+
+#how-to-play {
+    float: left;
+}
+
+#restart {
+    float: right;
+    margin-right: 20px;
+}
