@@ -39,6 +39,7 @@ h2 {
     margin: auto;
     gap: 1.5vw;
     grid-template-columns: 200px 200px 200px 200px;
+    perspective: 800px;
 }
 
 .cards {
@@ -49,12 +50,17 @@ h2 {
     align-items: center;
     position: relative;
     transform-style: preserve-3d;
-    transform: scale(1);   
+    transform: scale(1);
+    transition: transform .5s;   
 }
 
 .cards:active {
     transform: scale(0.96);
     transition: transform .25s;
+}
+
+.cards.flip {
+    transform: rotateY(180deg);
 }
 
 .card-back, 
@@ -65,6 +71,11 @@ h2 {
     padding: 0;
     position: absolute; 
     background-color: #0A172D;
+    backface-visibility: hidden;
+}
+
+.card-front {
+    transform: rotateY(180deg);
 }
 
 /* Info area styles */
