@@ -171,6 +171,11 @@ button:hover {
         width: 30vw;
         height: 30vw;
     }
+
+    .card-back, 
+    .card-front {
+    border-radius: 8px;
+    }
     
     #info-area {
         width: 93vw;
