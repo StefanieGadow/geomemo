@@ -1,7 +1,8 @@
 // Wait for the DOM to be loaded
 document.addEventListener("DOMContentLoaded", () => {
     const cards = document.querySelectorAll(".cards");
-    let hasFlippedCard = false;
+    let cardsFlipped = 0;
+    // let hasFlippedCard = false;
     let lockBoard = false;
     let firstCard;
     let secondCard;
@@ -10,30 +11,41 @@ document.addEventListener("DOMContentLoaded", () => {
     cards.forEach(card => card.addEventListener("click", flipCard));
 
     function flipCard() {
-        if (this === firstCard) return;
-        if (lockBoard) return;
+        
+        if (cardsFlipped >= 2) return;
 
         this.classList.add("flip");
 
 
-        if (!hasFlippedCard) {
-            hasFlippedCard = true;
+        if (cardsFlipped === 0) {
+            // hasFlippedCard = true;
             firstCard = this;
+            cardsFlipped++;
+            return;
         } else {
-            hasFlippedCard = false;
+            // hasFlippedCard = false;
             secondCard = this;
+            // lockBoard = true;
+            cardsFlipped++;
+
+            // cards.forEach(card => card.removeEventListener("click", flipCard));
 
             checkForMatch();
+            
         }
-    }
+        }
+    
 
         // Function to check if flipped cards match
         function checkForMatch() {
-            if(firstCard.dataset.geometricForm === secondCard.dataset.geometricForm) {
+            let isMatch = firstCard.dataset.geometricForm === secondCard.dataset.geometricForm;
+            if(isMatch) {
                 disableCards();
             } else {
                 unflipCards();
             }
+
+            // cards.forEach(card => card.addEventListener("click", flipCard));
         }
 
         // Function to disable matched cards
@@ -45,26 +57,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Function to unflip unmatched cards
 
-        /* function unflipCards() {
-            lockBoard = true;
+        function unflipCards() {
+            
             setTimeout(() => {
                 firstCard.classList.remove("flip");
                 secondCard.classList.remove("flip");
+                
                 resetBoard();
             }, 1200);
-        } */
+        }
 
-        function unflipCards() {
-            lockBoard = true;
-          
-            // Unflip the cards immediately
-            firstCard.classList.remove("flip");
-            secondCard.classList.remove("flip");
-          
-            // Reset the board after unflipping the cards
-            resetBoard();
-          }
-    
+            
         // Function to reset the board
 
         function resetBoard() {
@@ -73,4 +76,4 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
 
-})
+});
