@@ -38,13 +38,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Function to check if flipped cards match
         function checkForMatch() {
-            let isMatch = firstCard.dataset.geometricForm === secondCard.dataset.geometricForm;
+            const checkCards = [firstCard.querySelector(".card-front"), secondCard.querySelector(".card-front")];
+            let isMatch = checkCards[0].dataset.geometricform === checkCards[1].dataset.geometricform;
+           
             if(isMatch) {
                 disableCards();
             } else {
                 unflipCards();
             }
-
+            cardsFlipped = 0;
             // cards.forEach(card => card.addEventListener("click", flipCard));
         }
 
