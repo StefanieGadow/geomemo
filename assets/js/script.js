@@ -78,4 +78,35 @@ document.addEventListener("DOMContentLoaded", () => {
             const turnsCounter = document.getElementById("turns");
             turnsCounter.textContent = `Turns: ${turns}`;
         }
+
+        // Function to shuffle the cards
+
+        function shuffleCards() {
+            cards.forEach(card => {
+                let randomPosition = Math.floor(Math.random() * cards.length);
+                card.style.order = randomPosition;
+            });
+        }
+
+        // Function to restart the game
+
+        function restartGame() {
+            cards.forEach(card => {
+                card.classList.remove("flip");
+                card.addEventListener("click", flipCard);
+            });
+            [cardsFlipped, turns] = [0, 0];
+            const turnsCounter = document.getElementById("turns");
+            turnsCounter.textContent = `Turns: 0`;
+
+            shuffleCards();
+        }
+
+        // Add event listener on restart button
+
+        const restartButton = document.getElementById("restart");
+        restartButton.addEventListener("click", restartGame);
+
+        // Shuffle cards on page load
+        shuffleCards();
 });
