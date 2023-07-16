@@ -74,9 +74,11 @@ h2 {
     backface-visibility: hidden;
 }
 
+
 .card-front {
     transform: rotateY(180deg);
 }
+
 
 /* Info area styles */
 
