@@ -6,6 +6,8 @@ document.addEventListener("DOMContentLoaded", () => {
     let firstCard;
     let secondCard;
     let turns = 0;
+    let timeLeft = 60;
+    let timer = null;
 
     cards.forEach(card => card.addEventListener("click", flipCard));
 
@@ -16,6 +18,10 @@ document.addEventListener("DOMContentLoaded", () => {
         this.classList.add("flip");
 
         if (this === firstCard) return;
+
+        if (cardsFlipped === 0 && turns === 0){
+            startTimer();
+        }
 
         if (cardsFlipped === 0) {
             firstCard = this;
@@ -109,4 +115,44 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Shuffle cards on page load
         shuffleCards();
+
+        // Create the timer
+
+        const timerDisplay = document.getElementById("timer");
+
+        function updateTimerDisplay() {
+            timerDisplay.textContent = `Time left: ${timeLeft}s`;
+        }
+
+        function countdownTimer() {
+            
+                timeLeft--;
+                updateTimerDisplay();
+            if (timeLeft <= 0) {
+                endGame();
+            }
+        }
+
+        // Function to start the timer
+
+        function startTimer() {
+            updateTimerDisplay();
+            timer = setInterval(() => {
+                timeLeft--;
+                if (timeLeft >= 0) {
+                    updateTimerDisplay();
+                } else {
+                    clearInterval(timer);
+                    endGame();
+                }
+            }, 1000)
+        }
+
+        // Function for the end of the game
+
+        function endGame() {
+            clearInterval(timer);
+        }
+
+
 });
