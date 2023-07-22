@@ -260,6 +260,7 @@ button:hover {
     
     width: 100%;
     height: auto;
+    min-height: 400px;
     font-size: 1rem;
   }
 

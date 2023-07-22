@@ -8,8 +8,9 @@ document.addEventListener("DOMContentLoaded", () => {
     let turns = 0;
     let timeLeft = 60;
     let timer = null;
-    let matchedCards;
-
+    let matchedCards = 0;
+   
+    
     cards.forEach(card => card.addEventListener("click", flipCard));
 
     function flipCard() {
@@ -106,6 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
             [cardsFlipped, turns] = [0, 0];
             const turnsCounter = document.getElementById("turns");
+            matchedCards = 0;
             turnsCounter.textContent = `Turns: 0`;
 
             shuffleCards();
@@ -132,7 +134,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 timeLeft--;
                 updateTimerDisplay();
             if (timeLeft <= 0) {
-                endGame();
+                endGameLoss();
             }
         }
 
@@ -188,19 +190,33 @@ document.addEventListener("DOMContentLoaded", () => {
         /* Functions for the end of the game ( win and lose) */
 
         function endGameWin() {
-            showOverlay("Congratulations!\n You matched all the cards!");
+           
+            const gameHeading = document.getElementById("game-heading");
+            const gameParagraph = document.getElementById("game-paragraph");
+            
+            gameHeading.textContent = "Congratulations!"
+            gameParagraph.textContent = "You matched all the cards!\n It took you ${turns} turns."
+            const endGameOverlay = document.getElementById("game-overlay");
+            openOverlay(endGameOverlay);
+
             resetTimer();
         }
 
         function endGameLoss() {
-            showOverlay("Oh no!\n You ran out of time!");
+            const gameHeading = document.getElementById("game-heading");
+            const gameParagraph = document.getElementById("game-paragraph");
+
+            gameHeading.textContent = "Oh no!"
+            gameParagraph.textContent = "You ran out of time."
+            const endGameOverlay = document.getElementById("game-overlay");
+            openOverlay(endGameOverlay);
             resetTimer();
         }
 
         // Function to check if all cardss are matched */
 
         function checkGameWin(){
-            if( matchedCards === cards.length/2) {
+            if( matchedCards === 6) {
                 endGameWin();
             }
         }
