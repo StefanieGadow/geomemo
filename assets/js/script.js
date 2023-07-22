@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let turns = 0;
     let timeLeft = 60;
     let timer = null;
+    let matchedCards;
 
     cards.forEach(card => card.addEventListener("click", flipCard));
 
@@ -42,7 +43,9 @@ document.addEventListener("DOMContentLoaded", () => {
             let isMatch = checkCards[0].dataset.geometricform === checkCards[1].dataset.geometricform;
            
             if(isMatch) {
+                matchedCards += 1;
                 disableCards();
+                checkGameWin();
             } else {
                 unflipCards();
             }
@@ -143,7 +146,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     updateTimerDisplay();
                 } else {
                     clearInterval(timer);
-                    endGame();
+                    endGameLoss();
                 }
             }, 1000)
         }
@@ -165,32 +168,70 @@ document.addEventListener("DOMContentLoaded", () => {
         /* Create an overlay */
 
         function showOverlay(message) {
-            const overlay = document.createElement("div");
-            overlay.classList.add("overlay");
+            const overlay = document.getElementById("overlay");
+            const overlayMessage = document.getElementById("overlay-message");
+            const overlayTurns = document.getElementById("overlay-turns");
 
-            const messageElement = document.createElement("p");
-            messageElement.textContent = message;
+            overlayMessage.textContent = message;
+            overlayTurns.textContent = `Turns: ${turns}`;
 
-            const turnsElement = document.createElement("p");
-            turnsElement.textContent = `Turns: ${turns}`;
+            overlay.classList.remove("hidden");
 
-            overlay.appendChild(messageElement);
-            overlay.appendChild(turnsElement);
-
-            document.body.appendChild(overlay);
-
-            resetTimer();
+            
         }
+
+        function hideOverlay() {
+            const overlay = document.getElementById("overlay");
+            overlay.classList.add("hidden");
+          }
 
         /* Functions for the end of the game ( win and lose) */
 
         function endGameWin() {
             showOverlay("Congratulations!\n You matched all the cards!");
+            resetTimer();
         }
 
         function endGameLoss() {
             showOverlay("Oh no!\n You ran out of time!");
+            resetTimer();
         }
 
+        // Function to check if all cardss are matched */
+
+        function checkGameWin(){
+            if( matchedCards === cards.length/2) {
+                endGameWin();
+            }
+        }
+
+        /* How to play overlay */
+
+        const openOverlayButton = document.querySelectorAll("[data-overlay-target]");
+        const closeOverlayButton = document.querySelectorAll("[data-overlay-close]");
+        
+        openOverlayButton.forEach(button => {
+            button.addEventListener("click", () => {
+                const overlay = document.querySelector(button.dataset.overlayTarget);
+                openOverlay(overlay);
+            })
+        })
+
+        closeOverlayButton.forEach(button => {
+            button.addEventListener("click", () => {
+                const overlay = button.closest(".play-overlay");
+                closeOverlay(overlay);
+            })
+        })
+
+        function openOverlay(overlay){
+            if(overlay == null) return;
+            overlay.classList.add("active");
+        }
+
+        function closeOverlay(overlay){
+            if(overlay == null) return;
+            overlay.classList.remove("active");
+        }
 
 });

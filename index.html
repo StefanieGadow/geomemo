@@ -66,14 +66,35 @@
             <img class="card-back" src="assets/images/card-back.svg" alt="A card showing a question mark">
         </div>
 
-
+        <div class="play-overlay" id="play-overlay">
+            <div class="overlay-body">
+                <h2>How to play</h2>
+                <p>The deck consists of 6 sets of cards. <br><br>
+With each turn, you flip over two cards (one at a time, so you can see the first before picking the second). <br><br>
+If the two cards match, they are not turned back over; otherwise, they are turned back over. <br><br>
+The game ends when all the cards are matched. <br><br>
+You have 60 seconds to match all the cards, or you will lose the game.</p>
+                <button data-overlay-close type="button" class="close-button">Close</button>
+            </div>
+        </div>
+        <!-- First try Overlay
+        <div id="overlay" class="hidden">
+            <div id="overlay-content">
+                <p id="overlay-text"></p>
+                <p id="overlay-turns"></p>
+                <button type="button" id="overlay-close">Close</button>
+            </div>
+        </div>
+        -->
     </section>
 
     <section id="info-area">
-        <button type="button" id="how-to-play">How to Play</button>
+        <button data-overlay-target="#play-overlay" type="button" id="how-to-play">How to Play</button>
         <p id="info"><span id="turns">Turns: 0</span> <br><span id="timer">Time left:</span></p>
         <button type="button" id="restart">Restart</button>
     </section>
+
+
     <script src="assets/js/script.js"></script>
 </body>
 </html>
