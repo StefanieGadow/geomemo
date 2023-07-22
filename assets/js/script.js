@@ -148,10 +148,48 @@ document.addEventListener("DOMContentLoaded", () => {
             }, 1000)
         }
 
+        /* Functions to reset the timer */
+
+        function resetTimer() {
+            clearInterval(timer);
+            timeLeft = 60;
+            updateTimerDisplay();
+        }
+
         // Function for the end of the game
 
         function endGame() {
             clearInterval(timer);
+        }
+
+        /* Create an overlay */
+
+        function showOverlay(message) {
+            const overlay = document.createElement("div");
+            overlay.classList.add("overlay");
+
+            const messageElement = document.createElement("p");
+            messageElement.textContent = message;
+
+            const turnsElement = document.createElement("p");
+            turnsElement.textContent = `Turns: ${turns}`;
+
+            overlay.appendChild(messageElement);
+            overlay.appendChild(turnsElement);
+
+            document.body.appendChild(overlay);
+
+            resetTimer();
+        }
+
+        /* Functions for the end of the game ( win and lose) */
+
+        function endGameWin() {
+            showOverlay("Congratulations!\n You matched all the cards!");
+        }
+
+        function endGameLoss() {
+            showOverlay("Oh no!\n You ran out of time!");
         }
 
 

@@ -85,7 +85,7 @@ h2 {
 #info-area {
     width: 860px;
     text-align: center;
-    margin: auto;
+    margin: auto; 
     display: grid;
     grid-template-columns: auto auto auto;
     gap: 1.5vw;
