@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 unflipCards();
             }
             cardsFlipped = 0;
-            countTurns();
+           /* countTurns(); */
         }
 
         // Function to disable matched cards
@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
             setTimeout(() => {
                 firstCard.classList.remove("flip");
                 secondCard.classList.remove("flip");
-                
+                countTurns();
                 resetBoard();
             }, 1200);
         }
@@ -195,7 +195,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const gameParagraph = document.getElementById("game-paragraph");
             
             gameHeading.textContent = "Congratulations!"
-            gameParagraph.textContent = "You matched all the cards!\n It took you ${turns} turns."
+            gameParagraph.textContent = `You matched all the cards!\n It took you ${turns} turns.`
             const endGameOverlay = document.getElementById("game-overlay");
             openOverlay(endGameOverlay);
 
