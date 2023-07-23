@@ -158,3 +158,33 @@ Lighthouse was used to see if there were issues with the performance of the webs
 #### PowerMapper
 
 PowerMapper was used to check the website for compatibility across different browsers.
+
+## Deployment
+
+This site was deployed through GitHub Pages using the following steps:
+
+1. Log into GitHub.
+2. Locate the repository.
+3. Locate the settings option along the options bar.
+4. Locate GitHub Pages options towards the bottom of the page.
+5. In the ‘Source’ dropdown, select ‘Master’ from the branch options.
+6. Click the save button.
+7. The site is now published though it may not be accessible immediately.
+
+The site URL will be visible on the green bar under the section header. This will remain there permanently, and you can refer back to it anytime.
+
+The live link can be found here.
+
+## Credits
+
+### Code
+
+The creation of overlays for the game instructions and the end-of-game popups were created using the following [tutorial](https://www.youtube.com/watch?v=MBaw_6cPmAw&list=WL&index=2). Commented in HTML and CSS for clarity.
+
+### Content
+
+I wrote the game instructions.
+
+### Media
+
+I created the card symbols and the card back.
