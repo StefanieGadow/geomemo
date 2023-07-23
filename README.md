@@ -107,4 +107,54 @@ The restart button restarts the game (the turn counter is set to 0, and the time
 - [PowerMapper](https://www.powermapper.com/) was used to check compatibility with older browsers.
 - [Responsinator](http://www.responsinator.com/) used to check that the site was responsive on different screen sizes.
 
+## Testing
 
+### Validating
+
+- HTML – [HTML validator](https://validator.w3.org/nu/) – no errors or warnings found.
+
+![HTML validator result](assets/images/readme/html-validator.png)
+
+- CSS – [CSS validator](https://jigsaw.w3.org/css-validator/) – no errors or warnings found.
+
+![CSS validator result](assets/images/readme/css-validator.png)
+ 
+- JavaScript – [JShint](https://jshint.com/) – 
+
+### Testing User Stories from UX Section
+
+- As a user, I want to play a quick game of memory.
+  - The user can play a short game on all screen sizes.
+- As a user, I want to be able to access to rules of the game.
+  - The user can access the game instruction by clicking the “How to play” button.
+- As a user, I want to see how many turns it took me to win the game.
+  - The user can see how many turns they have already done and get a message about their total turns when they win.
+
+### Further Testing
+
+#### Personal Testing
+
+Through devices that are readily available to me, I was able to test the page on:
+
+- iPhone SE – Safari
+- iPad mini – Safari
+- MacBook – Safari
+- Windows laptop – Google Chrome
+- Windows laptop – Microsoft Edge
+- Windows laptop – Mozilla Firefox
+
+#### Responsinator
+
+Responsinator ensured the website was responsive on all devices and browsers.
+
+#### Third-party Testing
+
+I asked a few people to test the website on various devices. Their feedback was incorporated into the latest version.
+
+#### Lighthouse
+
+Lighthouse was used to see if there were issues with the performance of the website.
+
+#### PowerMapper
+
+PowerMapper was used to check the website for compatibility across different browsers.
