@@ -88,4 +88,23 @@ The restart button restarts the game (the turn counter is set to 0, and the time
 - There could be different levels of the game. For example, the “easy” level could use 12 memory cards, the “medium” level could use 16 cards, and the “hard” level could use 20 cards.
 - A scoreboard could be implemented so that the user could keep track of their best results.
 
+## Technologies used
+
+### Languages used
+
+- HTML
+- CSS
+- JavaScript
+
+### Frameworks, Libraries and Programs Used
+
+- [Google Fonts](https://fonts.google.com/) used to import “Montserrat” font.
+- [GitHub](https://github.com/) is used to host the repository.
+- [Gitpod](https://gitpod.io/) was used to develop the project and organise version control.
+- [GitHub Pages](https://pages.github.com/) are used to deploy the site.
+- [Adobe XD](https://helpx.adobe.com/de/support/xd.html) was used to create wireframes.
+- [Lighthouse](https://developer.chrome.com/docs/lighthouse/overview/) for performance review.
+- [PowerMapper](https://www.powermapper.com/) was used to check compatibility with older browsers.
+- [Responsinator](http://www.responsinator.com/) used to check that the site was responsive on different screen sizes.
+
 
