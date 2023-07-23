@@ -51,5 +51,41 @@ The game area shows the 12 memory cards.
 
 ![Image of the game area](assets/images/readme/game-area.png)
 
+- "Win” overlay  
+When the game is won, the win overlay appears and tells the user how many turns it took to win.
+
+![Image of the win overlay](assets/images/readme/win-overlay.png)
+
+- “Lose” overlay  
+When the timer runs out, the overlay tells the user they are out of time.
+
+![Image of the lose overlay](assets/images/readme/lose-overlay.png)
+
+- Information area  
+The information area consists of the “How to play” button, information about turns and the timer, and the “Restart” button.
+
+![Image of the information area](assets/images/readme/information-area.png)
+
+- “How to play” button  
+It opens up information about the rules of the game.
+
+![Image of the how to play button](assets/images/readme/how-to-play.png)
+![Image of the how to play overlay](assets/images/readme/how-overlay.png)
+
+- Turns and timer  
+The turns counter counts the turns that the player has already done.
+ The timer counts down from 60 seconds. If the game is not resolved in 60 seconds, the player loses the game.
+
+ ![Image of the turns and timer information](assets/images/readme/turns-timer.png)
+
+ - “Restart” button  
+The restart button restarts the game (the turn counter is set to 0, and the timer is set to 60 seconds).
+
+![Image of th restart button](assets/images/readme/restart.png)
+
+### Future features
+
+- There could be different levels of the game. For example, the “easy” level could use 12 memory cards, the “medium” level could use 16 cards, and the “hard” level could use 20 cards.
+- A scoreboard could be implemented so that the user could keep track of their best results.
 
 
