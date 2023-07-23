@@ -16,7 +16,7 @@
         <h2>Memory Card Game</h2>
     </header>
 
-    <section id="game-area">
+    <div id="game-area">
         <div class="cards">
             <img class= "card-front" data-geometricform ="circle" src="assets/images/card-circle.svg" alt="A card showing a circle">
             <img class="card-back" src="assets/images/card-back.svg" alt="A card showing a question mark">
@@ -89,23 +89,14 @@
                 <button data-overlay-close type="button" class="close-button">Close</button>
             </div>
         </div>
-        <!-- First try Overlay
-        <div id="overlay" class="hidden">
-            <div id="overlay-content">
-                <p id="overlay-text"></p>
-                <p id="overlay-turns"></p>
-                <button type="button" id="overlay-close">Close</button>
-            </div>
-        </div>
-        -->
-    </section>
+        
+    </div>
 
-    <section id="info-area">
+    <div id="info-area">
         <button data-overlay-target="#play-overlay" type="button" id="how-to-play">How to Play</button>
         <p id="info"><span id="turns">Turns: 0</span> <br><span id="timer">Time left:</span></p>
         <button type="button" id="restart">Restart</button>
-    </section>
-
+    </div>
 
     <script src="assets/js/script.js"></script>
 </body>
