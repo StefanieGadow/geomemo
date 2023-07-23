@@ -10,7 +10,6 @@ document.addEventListener("DOMContentLoaded", () => {
     let timer = null;
     let matchedCards = 0;
    
-    
     cards.forEach(card => card.addEventListener("click", flipCard));
 
     function flipCard() {
@@ -32,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
             secondCard = this;
             cardsFlipped++;
-
+            countTurns();
             checkForMatch();
            }
         }
@@ -48,10 +47,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 disableCards();
                 checkGameWin();
             } else {
+
                 unflipCards();
             }
             cardsFlipped = 0;
-           /* countTurns(); */
         }
 
         // Function to disable matched cards
@@ -69,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
             setTimeout(() => {
                 firstCard.classList.remove("flip");
                 secondCard.classList.remove("flip");
-                countTurns();
+                
                 resetBoard();
             }, 1200);
         }
@@ -129,15 +128,6 @@ document.addEventListener("DOMContentLoaded", () => {
             timerDisplay.textContent = `Time left: ${timeLeft}s`;
         }
 
-        function countdownTimer() {
-            
-                timeLeft--;
-                updateTimerDisplay();
-            if (timeLeft <= 0) {
-                endGameLoss();
-            }
-        }
-
         // Function to start the timer
 
         function startTimer() {
@@ -150,7 +140,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     clearInterval(timer);
                     endGameLoss();
                 }
-            }, 1000)
+            }, 1000);
         }
 
         /* Functions to reset the timer */
@@ -161,32 +151,6 @@ document.addEventListener("DOMContentLoaded", () => {
             updateTimerDisplay();
         }
 
-        // Function for the end of the game
-
-        function endGame() {
-            clearInterval(timer);
-        }
-
-        /* Create an overlay */
-
-        function showOverlay(message) {
-            const overlay = document.getElementById("overlay");
-            const overlayMessage = document.getElementById("overlay-message");
-            const overlayTurns = document.getElementById("overlay-turns");
-
-            overlayMessage.textContent = message;
-            overlayTurns.textContent = `Turns: ${turns}`;
-
-            overlay.classList.remove("hidden");
-
-            
-        }
-
-        function hideOverlay() {
-            const overlay = document.getElementById("overlay");
-            overlay.classList.add("hidden");
-          }
-
         /* Functions for the end of the game ( win and lose) */
 
         function endGameWin() {
@@ -194,8 +158,8 @@ document.addEventListener("DOMContentLoaded", () => {
             const gameHeading = document.getElementById("game-heading");
             const gameParagraph = document.getElementById("game-paragraph");
             
-            gameHeading.textContent = "Congratulations!"
-            gameParagraph.textContent = `You matched all the cards!\n It took you ${turns} turns.`
+            gameHeading.textContent = "Congratulations!";
+            gameParagraph.textContent = `You matched all the cards!\n It took you ${turns} turns.`;
             const endGameOverlay = document.getElementById("game-overlay");
             openOverlay(endGameOverlay);
 
@@ -206,8 +170,8 @@ document.addEventListener("DOMContentLoaded", () => {
             const gameHeading = document.getElementById("game-heading");
             const gameParagraph = document.getElementById("game-paragraph");
 
-            gameHeading.textContent = "Oh no!"
-            gameParagraph.textContent = "You ran out of time."
+            gameHeading.textContent = "Oh no!";
+            gameParagraph.textContent = "You ran out of time.";
             const endGameOverlay = document.getElementById("game-overlay");
             openOverlay(endGameOverlay);
             resetTimer();
@@ -230,15 +194,15 @@ document.addEventListener("DOMContentLoaded", () => {
             button.addEventListener("click", () => {
                 const overlay = document.querySelector(button.dataset.overlayTarget);
                 openOverlay(overlay);
-            })
-        })
+            });
+        });
 
         closeOverlayButton.forEach(button => {
             button.addEventListener("click", () => {
                 const overlay = button.closest(".play-overlay");
                 closeOverlay(overlay);
-            })
-        })
+            });
+        });
 
         function openOverlay(overlay){
             if(overlay == null) return;
