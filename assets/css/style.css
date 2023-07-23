@@ -200,7 +200,9 @@ button:hover {
         text-align: center;
     }
 }
-    /* Overlay */
+    /* Overlay 
+    The overlay was created with the help of this tutorial: https://www.youtube.com/watch?v=MBaw_6cPmAw&list=WL&index=2
+    */
 
   .play-overlay {
     position: fixed;

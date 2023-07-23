@@ -185,7 +185,9 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
 
-        /* How to play overlay */
+        /* How to play overlay 
+           The overlay was created with the help of this tutorial: https://www.youtube.com/watch?v=MBaw_6cPmAw&list=WL&index=2
+        */
 
         const openOverlayButton = document.querySelectorAll("[data-overlay-target]");
         const closeOverlayButton = document.querySelectorAll("[data-overlay-close]");
