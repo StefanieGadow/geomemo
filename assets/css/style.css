@@ -23,11 +23,11 @@ header {
 h1 {
     font-size: 2.8rem;
     font-weight: 900;
-    margin-top: 1em;
+    margin-top: 0.5em;
 }
 
 h2 {
-    margin-bottom: 2em;
+    margin-bottom: 1.5em;
 }
 
 /* Game area styles */
@@ -91,7 +91,8 @@ h2 {
     gap: 1.5%;
     font-size: 1.4rem;
     font-weight: 600;
-    margin-top: 1em;   
+    margin-top: 1em;
+    margin-bottom: 1em;   
 }
 
 button {
