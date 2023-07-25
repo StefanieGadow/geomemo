@@ -2,39 +2,32 @@
 
 document.addEventListener("DOMContentLoaded", () => {
     const cards = document.querySelectorAll(".cards");
-    let cardsFlipped = 0;
-    let firstCard;
+    let firstCard = null;
     let secondCard;
     let turns = 0;
     let timeLeft = 60;
     let timer = null;
     let matchedCards = 0;
+    let lockBoard = false;
    
     cards.forEach(card => card.addEventListener("click", flipCard));
 
     function flipCard() {
-        
-        if (cardsFlipped >= 2) return;
-
-        this.classList.add("flip");
-
-        if (this === firstCard) return;
-
-        if (cardsFlipped === 0 && turns === 0){
+        if (turns === 0){
             startTimer();
         }
-
-        if (cardsFlipped === 0) {
-            firstCard = this;
-            cardsFlipped++;
-            return;
-        } else {
-            secondCard = this;
-            cardsFlipped++;
-            countTurns();
-            checkForMatch();
-           }
+        if (lockBoard==false){
+            this.classList.add("flip")
+            if (firstCard === null) {
+                firstCard = this;
+                countTurns();
+            } else {
+                lockBoard = true;
+                secondCard = this;
+                checkForMatch();
+            }
         }
+    }
     
         // Function to check if flipped cards match
 
@@ -45,12 +38,10 @@ document.addEventListener("DOMContentLoaded", () => {
             if(isMatch) {
                 matchedCards += 1;
                 disableCards();
-                checkGameWin();
+                checkGameWin(); 
             } else {
-
                 unflipCards();
             }
-            cardsFlipped = 0;
         }
 
         // Function to disable matched cards
@@ -68,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
             setTimeout(() => {
                 firstCard.classList.remove("flip");
                 secondCard.classList.remove("flip");
-                
+                lockBoard = false;
                 resetBoard();
             }, 1200);
         }
@@ -77,6 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         function resetBoard() {
            [firstCard, secondCard] = [null, null];
+           lockBoard = false;
         }
 
         // Function to count the turns
@@ -104,11 +96,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 card.classList.remove("flip");
                 card.addEventListener("click", flipCard);
             });
-            [cardsFlipped, turns] = [0, 0];
+            turns = 0;
             const turnsCounter = document.getElementById("turns");
             matchedCards = 0;
             turnsCounter.textContent = `Turns: 0`;
-
             shuffleCards();
         }
 
@@ -162,7 +153,6 @@ document.addEventListener("DOMContentLoaded", () => {
             gameParagraph.textContent = `You matched all the cards!\n It took you ${turns} turns.`;
             const endGameOverlay = document.getElementById("game-overlay");
             openOverlay(endGameOverlay);
-
             resetTimer();
         }
 
@@ -216,4 +206,4 @@ document.addEventListener("DOMContentLoaded", () => {
             overlay.classList.remove("active");
         }
 
-});
+    });
