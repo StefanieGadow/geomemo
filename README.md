@@ -5,7 +5,7 @@ Playing the game will give the user moments of playfulness and help enhance thei
 
 ![Am I responsive image](assets/images/readme/amiresponsive.png)
 
-You can find the live site here.
+You can find the live site [here](https://stefaniegadow.github.io/geomemo/).
 
 ## User Experience (UX)
 
@@ -155,9 +155,13 @@ I asked a few people to test the website on various devices. Their feedback was 
 
 Lighthouse was used to see if there were issues with the performance of the website.
 
+![Image of Lighthouse test result](assets/images/readme/lighthouse.png)
+
 #### PowerMapper
 
 PowerMapper was used to check the website for compatibility across different browsers.
+
+![Image of PowerMapper test result](assets/images/readme/powermapper.png)
 
 ## Deployment
 
@@ -173,7 +177,7 @@ This site was deployed through GitHub Pages using the following steps:
 
 The site URL will be visible on the green bar under the section header. This will remain there permanently, and you can refer back to it anytime.
 
-The live link can be found here.
+The live link can be found [here](https://stefaniegadow.github.io/geomemo/).
 
 ## Credits
 
