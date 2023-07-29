@@ -108,17 +108,23 @@ document.addEventListener("DOMContentLoaded", () => {
     function restartGame() {
         cards.forEach(card => {
             card.classList.remove("flip");
-            card.addEventListener("click", flipCard);
+            card.removeEventListener("click", flipCard); 
         });
+
         turns = 0;
         const turnsCounter = document.getElementById("turns");
         matchedCards = 0;
         turnsCounter.textContent = `Turns: 0`;
         resetTimer();
-        shuffleCards();
-        resetBoard();
-    }
 
+        setTimeout(() => {
+            shuffleCards();
+            resetBoard();
+            cards.forEach(card => {
+                card.addEventListener("click", flipCard); 
+            });
+        }, 500);
+    }
     
     // Add an eventListener to the restart button
     const restartButton = document.getElementById("restart");
