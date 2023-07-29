@@ -9,9 +9,16 @@ document.addEventListener("DOMContentLoaded", () => {
     let timer = null;
     let matchedCards = 0;
     let lockBoard = false;
-   
+
+    /**
+     * Adds eventListeners to all cards.
+     */
     cards.forEach(card => card.addEventListener("click", flipCard));
 
+    /**
+     * Flips the clicked card.
+     * Starts the timer on the first turn.
+     */
     function flipCard() {
         if (turns === 0){
             startTimer();
@@ -29,181 +36,197 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
     
-        // Function to check if flipped cards match
-
-        function checkForMatch() {
-            const checkCards = [firstCard.querySelector(".card-front"), secondCard.querySelector(".card-front")];
-            let isMatch = checkCards[0].dataset.geometricform === checkCards[1].dataset.geometricform;
+    /**
+    * Check if the flipped cards match based on their dataset attribute.
+    */
+    function checkForMatch() {
+        const checkCards = [firstCard.querySelector(".card-front"), secondCard.querySelector(".card-front")];
+        let isMatch = checkCards[0].dataset.geometricform === checkCards[1].dataset.geometricform;
            
-            if(isMatch) {
-                matchedCards += 1;
-                disableCards();
-                checkGameWin(); 
-            } else {
-                unflipCards();
-            }
+        if(isMatch) {
+            matchedCards += 1;
+            disableCards();
+            checkGameWin(); 
+        } else {
+            unflipCards();
         }
+    }
 
-        // Function to disable matched cards
+    /**
+     * Disable the matched cards by removing the click event listeners.
+     */
+    function disableCards() {
+        firstCard.removeEventListener("click", flipCard);
+        secondCard.removeEventListener("click", flipCard);
+        resetBoard();
+    }
 
-        function disableCards() {
-            firstCard.removeEventListener("click", flipCard);
-            secondCard.removeEventListener("click", flipCard);
+    /**
+     * Unflip the unmatched cards after a short delay to display the card's back side.
+    */
+    function unflipCards() {
+            
+        setTimeout(() => {
+            firstCard.classList.remove("flip");
+            secondCard.classList.remove("flip");
+            lockBoard = false;
             resetBoard();
-        }
+        }, 1200);
+    }
 
-        // Function to unflip unmatched cards
+    /**
+     * Resets the firstCard and secondCard variables to null and unlocks the board.
+     */
+    function resetBoard() {
+        [firstCard, secondCard] = [null, null];
+        lockBoard = false;
+    }
 
-        function unflipCards() {
-            
-            setTimeout(() => {
-                firstCard.classList.remove("flip");
-                secondCard.classList.remove("flip");
-                lockBoard = false;
-                resetBoard();
-            }, 1200);
-        }
+    /**
+     * Count the number of turns and update the turns counter on the page.
+     */
+    function countTurns() {
+        turns++;
 
-        // Function to reset the board
+        const turnsCounter = document.getElementById("turns");
+        turnsCounter.textContent = `Turns: ${turns}`;
+    }
 
-        function resetBoard() {
-           [firstCard, secondCard] = [null, null];
-           lockBoard = false;
-        }
+    /**
+     * Shuffle the cards by randomly assigning order to each card.
+     */
+    function shuffleCards() {
+        cards.forEach(card => {
+            let randomPosition = Math.floor(Math.random() * cards.length);
+            card.style.order = randomPosition;
+        });
+    }
 
-        // Function to count the turns
-
-        function countTurns() {
-            turns++;
-
-            const turnsCounter = document.getElementById("turns");
-            turnsCounter.textContent = `Turns: ${turns}`;
-        }
-
-        // Function to shuffle the cards
-
-        function shuffleCards() {
-            cards.forEach(card => {
-                let randomPosition = Math.floor(Math.random() * cards.length);
-                card.style.order = randomPosition;
-            });
-        }
-
-        // Function to restart the game
-
-        function restartGame() {
-            cards.forEach(card => {
-                card.classList.remove("flip");
-                card.addEventListener("click", flipCard);
-            });
-            turns = 0;
-            const turnsCounter = document.getElementById("turns");
-            matchedCards = 0;
-            turnsCounter.textContent = `Turns: 0`;
-            shuffleCards();
-        }
-
-        // Add event listener on restart button
-
-        const restartButton = document.getElementById("restart");
-        restartButton.addEventListener("click", restartGame);
-
-        // Shuffle cards on page load
+    /**
+     * Restart the game by removing the "flip" class from cards,
+     * re-adding click event listeners, resetting turns, and shuffling the cards.
+     */
+    function restartGame() {
+        cards.forEach(card => {
+            card.classList.remove("flip");
+            card.addEventListener("click", flipCard);
+        });
+        turns = 0;
+        const turnsCounter = document.getElementById("turns");
+        matchedCards = 0;
+        turnsCounter.textContent = `Turns: 0`;
         shuffleCards();
+    }
 
-        // Create the timer
+    
+    // Add an eventListener to the restart button
+    const restartButton = document.getElementById("restart");
+    restartButton.addEventListener("click", restartGame);
 
-        const timerDisplay = document.getElementById("timer");
+    // Shuffle cards on page load
+    shuffleCards();
 
-        function updateTimerDisplay() {
-            timerDisplay.textContent = `Time left: ${timeLeft}s`;
-        }
+    // Create the timer
+    const timerDisplay = document.getElementById("timer");
 
-        // Function to start the timer
+    function updateTimerDisplay() {
+        timerDisplay.textContent = `Time left: ${timeLeft}s`;
+    }
 
-        function startTimer() {
-            updateTimerDisplay();
-            timer = setInterval(() => {
-                timeLeft--;
-                if (timeLeft >= 0) {
-                    updateTimerDisplay();
-                } else {
-                    clearInterval(timer);
-                    endGameLoss();
-                }
-            }, 1000);
-        }
-
-        /* Functions to reset the timer */
-
-        function resetTimer() {
-            clearInterval(timer);
-            timeLeft = 60;
-            updateTimerDisplay();
-        }
-
-        /* Functions for the end of the game ( win and lose) */
-
-        function endGameWin() {
-           
-            const gameHeading = document.getElementById("game-heading");
-            const gameParagraph = document.getElementById("game-paragraph");
-            
-            gameHeading.textContent = "Congratulations!";
-            gameParagraph.textContent = `You matched all the cards!\n It took you ${turns} turns.`;
-            const endGameOverlay = document.getElementById("game-overlay");
-            openOverlay(endGameOverlay);
-            resetTimer();
-        }
-
-        function endGameLoss() {
-            const gameHeading = document.getElementById("game-heading");
-            const gameParagraph = document.getElementById("game-paragraph");
-
-            gameHeading.textContent = "Oh no!";
-            gameParagraph.textContent = "You ran out of time.";
-            const endGameOverlay = document.getElementById("game-overlay");
-            openOverlay(endGameOverlay);
-            resetTimer();
-        }
-
-        // Function to check if all cardss are matched */
-
-        function checkGameWin(){
-            if( matchedCards === 6) {
-                endGameWin();
+    /**
+     * Start the timer that counts down from 60 seconds.
+     * Updates the timer display every second.
+     * If the time runs out, trigger the endGameLoss function.
+     */
+    function startTimer() {
+        updateTimerDisplay();
+        timer = setInterval(() => {
+            timeLeft--;
+            if (timeLeft >= 0) {
+                updateTimerDisplay();
+            } else {
+                clearInterval(timer);
+                endGameLoss();
             }
+        }, 1000);
+    }
+
+    /**
+     * Reset the timer to its initial state (60 seconds) and update the display.
+     */
+    function resetTimer() {
+        clearInterval(timer);
+        timeLeft = 60;
+        updateTimerDisplay();
+    }
+
+    /**
+     * Handle the win condition of the game by displaying a congratulations message
+     * and showing the game overlay with the result and number of turns taken.
+     */
+    function endGameWin() {
+        const gameHeading = document.getElementById("game-heading");
+        const gameParagraph = document.getElementById("game-paragraph");
+            
+        gameHeading.textContent = "Congratulations!";
+        gameParagraph.textContent = `You matched all the cards!\n It took you ${turns} turns.`;
+        const endGameOverlay = document.getElementById("game-overlay");
+        openOverlay(endGameOverlay);
+        resetTimer();
+    }
+
+    /**
+     * Handle the loss condition of the game when time runs out.
+     * Display a message indicating the player ran out of time and show the game overlay.
+     */
+    function endGameLoss() {
+        const gameHeading = document.getElementById("game-heading");
+        const gameParagraph = document.getElementById("game-paragraph");
+
+        gameHeading.textContent = "Oh no!";
+        gameParagraph.textContent = "You ran out of time.";
+        const endGameOverlay = document.getElementById("game-overlay");
+        openOverlay(endGameOverlay);
+        resetTimer();
+    }
+
+    /**
+     * Check if all cards are matched. If so, trigger the endGameWin function
+     */
+    function checkGameWin(){
+        if( matchedCards === 6) {
+            endGameWin();
         }
+    }
 
-        /* How to play overlay 
-           The overlay was created with the help of this tutorial: https://www.youtube.com/watch?v=MBaw_6cPmAw&list=WL&index=2
-        */
-
-        const openOverlayButton = document.querySelectorAll("[data-overlay-target]");
-        const closeOverlayButton = document.querySelectorAll("[data-overlay-close]");
+    /* How to play overlay 
+        The overlay was created with the help of this tutorial: https://www.youtube.com/watch?v=MBaw_6cPmAw&list=WL&index=2
+    */
+    const openOverlayButton = document.querySelectorAll("[data-overlay-target]");
+    const closeOverlayButton = document.querySelectorAll("[data-overlay-close]");
         
-        openOverlayButton.forEach(button => {
-            button.addEventListener("click", () => {
-                const overlay = document.querySelector(button.dataset.overlayTarget);
-                openOverlay(overlay);
-            });
+    openOverlayButton.forEach(button => {
+        button.addEventListener("click", () => {
+            const overlay = document.querySelector(button.dataset.overlayTarget);
+            openOverlay(overlay);
         });
-
-        closeOverlayButton.forEach(button => {
-            button.addEventListener("click", () => {
-                const overlay = button.closest(".play-overlay");
-                closeOverlay(overlay);
-            });
-        });
-
-        function openOverlay(overlay){
-            if(overlay == null) return;
-            overlay.classList.add("active");
-        }
-
-        function closeOverlay(overlay){
-            if(overlay == null) return;
-            overlay.classList.remove("active");
-        }
-
     });
+
+    closeOverlayButton.forEach(button => {
+        button.addEventListener("click", () => {
+            const overlay = button.closest(".play-overlay");
+            closeOverlay(overlay);
+        });
+    });
+
+    function openOverlay(overlay){
+        if(overlay == null) return;
+        overlay.classList.add("active");
+    }
+
+    function closeOverlay(overlay){
+        if(overlay == null) return;
+        overlay.classList.remove("active");
+    }
+
+});
