@@ -199,7 +199,7 @@ The live link can be found [here](https://stefaniegadow.github.io/geomemo/).
 
 ### Code
 
-The creation of overlays for the game instructions and the end-of-game popups were created using the following [tutorial](https://www.youtube.com/watch?v=MBaw_6cPmAw&list=WL&index=2). Commented in HTML and CSS for clarity.
+The creation of overlays for the game instructions and the end-of-game popups were created using the following [tutorial](https://www.youtube.com/watch?v=MBaw_6cPmAw&list=WL&index=2). Commented in HTML, CSS, and JavaScript for clarity.
 
 ### Content
 
