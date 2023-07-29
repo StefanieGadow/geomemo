@@ -69,7 +69,6 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(() => {
             firstCard.classList.remove("flip");
             secondCard.classList.remove("flip");
-            lockBoard = false;
             resetBoard();
         }, 1200);
     }

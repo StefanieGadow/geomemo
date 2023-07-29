@@ -163,6 +163,22 @@ PowerMapper was used to check the website for compatibility across different bro
 
 ![Image of PowerMapper test result](assets/images/readme/powermapper.png)
 
+## Bugs
+
+### Solved bugs
+
+Description:  
+Users were able to flip a third card before the cards were flipped back to show the card back. Then only two cards were 
+flipped back, and the card that was turned over first remained open.
+
+Solution:  
+A "lockBoard" variable was introduced to lock the board after two cards were unveiled. Now a third card cannot be turned 
+over. The board is unlocked when the cards are turned back again.
+
+### Unfixed bugs
+
+No unfixed bugs.
+
 ## Deployment
 
 This site was deployed through GitHub Pages using the following steps:
