@@ -114,7 +114,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const turnsCounter = document.getElementById("turns");
         matchedCards = 0;
         turnsCounter.textContent = `Turns: 0`;
+        resetTimer();
         shuffleCards();
+        resetBoard();
     }
 
     
