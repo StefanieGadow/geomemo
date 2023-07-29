@@ -8,6 +8,7 @@
     <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
     <title>Geomemo</title>
 </head>
+
 <body>
     <header>
         <h1>
@@ -16,6 +17,7 @@
         <h2>Memory Card Game</h2>
     </header>
 
+    <!-- Game area with cards -->
     <div id="game-area">
         <div class="cards">
             <img class= "card-front" data-geometricform ="circle" src="assets/images/card-circle.svg" alt="A card showing a circle">
@@ -66,6 +68,7 @@
             <img class="card-back" src="assets/images/card-back.svg" alt="A card showing a question mark">
         </div>
 
+        <!-- How to play overlay -->
         <div class="play-overlay" id="play-overlay">
             <div class="overlay-body">
                 <h2>How to play</h2>
@@ -90,9 +93,9 @@
                 <button data-overlay-close type="button" class="close-button">Close</button>
             </div>
         </div>
-        
     </div>
 
+    <!-- Information area with number of turns and a timer -->
     <div id="info-area">
         <button data-overlay-target="#play-overlay" type="button" id="how-to-play">How to Play</button>
         <p id="info"><span id="turns">Turns: 0</span> <br><span id="timer">Time left:</span></p>

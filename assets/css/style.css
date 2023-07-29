@@ -14,12 +14,6 @@ body {
     height: 100%;
 }
 
-header {
-    text-align: center;
-    display: block;
-    margin: 0 auto;   
-}
-
 h1 {
     font-size: 2.8rem;
     font-weight: 900;
@@ -28,6 +22,14 @@ h1 {
 
 h2 {
     margin-bottom: 1.5em;
+}
+
+/* Header styles */
+
+header {
+    text-align: center;
+    display: block;
+    margin: 0 auto;   
 }
 
 /* Game area styles */
@@ -201,7 +203,8 @@ button:hover {
         text-align: center;
     }
 }
-    /* Overlay 
+
+    /* Overlay styles
     The overlay was created with the help of this tutorial: https://www.youtube.com/watch?v=MBaw_6cPmAw&list=WL&index=2
     */
 
