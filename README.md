@@ -119,7 +119,7 @@ The restart button restarts the game (the turn counter is set to 0, and the time
 
 ![CSS validator result](assets/images/readme/css-validator.png)
  
-- JavaScript – [JShint](https://jshint.com/) – 
+- JavaScript – [JShint](https://jshint.com/) – no errors found.
 
 ### Testing User Stories from UX Section
 
